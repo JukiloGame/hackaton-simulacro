@@ -1,6 +1,8 @@
 using LiteDB;
 using System.Reflection;
 
+namespace PluriConnectAPI.Services;
+
 public class GenericService<T> where T : new()
 {
     private ILiteCollection<T> _col;
@@ -13,12 +15,7 @@ public class GenericService<T> where T : new()
 
     public IEnumerable<T> GetAll() => _col.FindAll();
 
-    public T? GetById(int id)
-    {
-        var propId = typeof(T).GetProperty("Id");
-        if(propId == null) return default;
-        return _col.FindOne(x => (int)propId.GetValue(x)! == id);
-    }
+    public T? GetById(int id) => _col.FindById(id);
 
     public void Insert(T obj) => _col.Insert(obj);
 
