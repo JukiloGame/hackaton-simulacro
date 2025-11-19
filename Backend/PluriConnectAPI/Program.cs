@@ -44,12 +44,20 @@ app.UseCors("FrontendPolicy");
 
 var db = new LiteDatabase(@"Data\pluriconnect.db");
 
+// Inicializar datos de prueba si la base de datos está vacía
+DbSeeder.Seed<Child>(db, "Data/sampleChildren.json");
+DbSeeder.Seed<Goal>(db, "Data/sampleGoals.json");
+DbSeeder.Seed<Activity>(db, "Data/sampleActivities.json");
+DbSeeder.Seed<Progress>(db, "Data/sampleProgress.json");
+DbSeeder.Seed<GoalActivities>(db, "Data/sampleGoalActivities.json");
+
 // Generic Services para cada modelo
 var childService = new GenericService<Child>(db);
 var goalService = new GenericService<Goal>(db);
 var activityService = new GenericService<Activity>(db);
 var progressService = new GenericService<Progress>(db);
-var goalActivityService = new GenericService<GoalActivity>(db);
+var goalActivityService = new GenericService<GoalActivities>(db);
+
 
 // ENDPOINTS
 
@@ -76,6 +84,6 @@ app.MapPost("/progress", (Progress p) => { progressService.Insert(p); return Res
 
 // GoalActivities
 app.MapGet("/goalActivities", () => goalActivityService.GetAll());
-app.MapPost("/goalActivities", (GoalActivity ga) => { goalActivityService.Insert(ga); return Results.Ok(ga); });
+app.MapPost("/goalActivities", (GoalActivities ga) => { goalActivityService.Insert(ga); return Results.Ok(ga); });
 
 app.Run();

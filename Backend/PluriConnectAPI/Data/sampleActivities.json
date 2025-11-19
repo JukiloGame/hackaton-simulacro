@@ -1,0 +1,11 @@
+[
+  { "Id": 1, "Type": "Lenguaje", "Description": "Lectura guiada" },
+  { "Id": 2, "Type": "Lenguaje", "Description": "Juego de vocabulario" },
+  { "Id": 3, "Type": "Motor fino", "Description": "Enhebrar cuentas" },
+  { "Id": 4, "Type": "Atención", "Description": "Juego de seguimiento visual" },
+  { "Id": 5, "Type": "Motor grueso", "Description": "Circuito psicomotriz" },
+  { "Id": 6, "Type": "Social", "Description": "Juego cooperativo" },
+  { "Id": 7, "Type": "Emoción", "Description": "Identificación de emociones" },
+  { "Id": 8, "Type": "Cognitivo", "Description": "Rompecabezas" },
+  { "Id": 9, "Type": "Lenguaje", "Description": "Repetición de sonidos" }
+]
