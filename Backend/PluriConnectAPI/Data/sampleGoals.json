@@ -1,96 +1,21 @@
 [
-  {
-    "Id": 1,
-    "ChildId": 1,
-    "Description": "Mejorar comprensión verbal",
-    "TargetPercentage": 75
-  },
-  {
-    "Id": 2,
-    "ChildId": 1,
-    "Description": "Aumentar vocabulario",
-    "TargetPercentage": 80
-  },
-  {
-    "Id": 3,
-    "ChildId": 1,
-    "Description": "Autonomía en tareas básicas",
-    "TargetPercentage": 60
-  },
+  { "Id": 1, "ChildId": 1, "Description": "Mejorar comprensión verbal", "TargetPercentage": 75 },
+  { "Id": 2, "ChildId": 1, "Description": "Aumentar vocabulario receptivo", "TargetPercentage": 80 },
+  { "Id": 3, "ChildId": 1, "Description": "Autonomía básica en tareas diarias", "TargetPercentage": 60 },
 
-  {
-    "Id": 4,
-    "ChildId": 2,
-    "Description": "Motricidad fina",
-    "TargetPercentage": 70
-  },
-  {
-    "Id": 5,
-    "ChildId": 2,
-    "Description": "Atención sostenida",
-    "TargetPercentage": 65
-  },
-  {
-    "Id": 6,
-    "ChildId": 2,
-    "Description": "Expresión emocional",
-    "TargetPercentage": 80
-  },
+  { "Id": 4, "ChildId": 2, "Description": "Motricidad fina manipulativa", "TargetPercentage": 70 },
+  { "Id": 5, "ChildId": 2, "Description": "Atención sostenida en actividades", "TargetPercentage": 65 },
+  { "Id": 6, "ChildId": 2, "Description": "Expresión emocional básica", "TargetPercentage": 80 },
 
-  {
-    "Id": 7,
-    "ChildId": 3,
-    "Description": "Iniciar lectura temprana",
-    "TargetPercentage": 50
-  },
-  {
-    "Id": 8,
-    "ChildId": 3,
-    "Description": "Participación social",
-    "TargetPercentage": 70
-  },
-  {
-    "Id": 9,
-    "ChildId": 3,
-    "Description": "Coordinación gruesa",
-    "TargetPercentage": 80
-  },
+  { "Id": 7, "ChildId": 3, "Description": "Iniciación a lectura temprana", "TargetPercentage": 50 },
+  { "Id": 8, "ChildId": 3, "Description": "Participación social adaptada", "TargetPercentage": 70 },
+  { "Id": 9, "ChildId": 3, "Description": "Coordinación corporal gruesa", "TargetPercentage": 80 },
 
-  {
-    "Id": 10,
-    "ChildId": 4,
-    "Description": "Control motor grueso",
-    "TargetPercentage": 75
-  },
-  {
-    "Id": 11,
-    "ChildId": 4,
-    "Description": "Reconocimiento de letras",
-    "TargetPercentage": 60
-  },
-  {
-    "Id": 12,
-    "ChildId": 4,
-    "Description": "Resolución de problemas simples",
-    "TargetPercentage": 70
-  },
+  { "Id": 10, "ChildId": 4, "Description": "Control motor grueso en entorno lúdico", "TargetPercentage": 75 },
+  { "Id": 11, "ChildId": 4, "Description": "Reconocimiento inicial de letras y símbolos", "TargetPercentage": 60 },
+  { "Id": 12, "ChildId": 4, "Description": "Resolución de problemas simples adaptados", "TargetPercentage": 70 },
 
-  {
-    "Id": 13,
-    "ChildId": 5,
-    "Description": "Desarrollo del habla",
-    "TargetPercentage": 65
-  },
-  {
-    "Id": 14,
-    "ChildId": 5,
-    "Description": "Juego simbólico",
-    "TargetPercentage": 70
-  },
-  {
-    "Id": 15,
-    "ChildId": 5,
-    "Description": "Habilidades sociales básicas",
-    "TargetPercentage": 75
-  }
+  { "Id": 13, "ChildId": 5, "Description": "Desarrollo del habla funcional", "TargetPercentage": 65 },
+  { "Id": 14, "ChildId": 5, "Description": "Juego simbólico y creatividad", "TargetPercentage": 70 },
+  { "Id": 15, "ChildId": 5, "Description": "Habilidades sociales básicas", "TargetPercentage": 75 }
 ]
