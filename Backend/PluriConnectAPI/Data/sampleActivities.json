@@ -1,11 +1,12 @@
 [
-  { "Id": 1, "Type": "Lenguaje", "Description": "Lectura guiada" },
-  { "Id": 2, "Type": "Lenguaje", "Description": "Juego de vocabulario" },
-  { "Id": 3, "Type": "Motor fino", "Description": "Enhebrar cuentas" },
-  { "Id": 4, "Type": "Atención", "Description": "Juego de seguimiento visual" },
-  { "Id": 5, "Type": "Motor grueso", "Description": "Circuito psicomotriz" },
-  { "Id": 6, "Type": "Social", "Description": "Juego cooperativo" },
-  { "Id": 7, "Type": "Emoción", "Description": "Identificación de emociones" },
-  { "Id": 8, "Type": "Cognitivo", "Description": "Rompecabezas" },
-  { "Id": 9, "Type": "Lenguaje", "Description": "Repetición de sonidos" }
+  { "Id": 1, "Type": "Musicoterapia", "Description": "Sesión de Musicoterapia Individual" },
+  { "Id": 2, "Type": "Fisioterapia", "Description": "Control Postural y Movilidad" },
+  { "Id": 3, "Type": "Estimulación Multisensorial", "Description": "Estimulación Multisensorial (Sala Snoezelen)" },
+  { "Id": 4, "Type": "Logopedia", "Description": "Estimulación de la Comunicación" },
+  { "Id": 5, "Type": "Juego Terapéutico", "Description": "Juego Terapéutico con Apoyo Educativo" },
+  { "Id": 6, "Type": "Psicomotricidad", "Description": "Psicomotricidad Individual o en Pequeños Grupos" },
+  { "Id": 7, "Type": "Fisioterapia", "Description": "Movilización Pasiva y Transferencias Seguras" },
+  { "Id": 8, "Type": "Estimulación Visual", "Description": "Estimulación Visual Adaptada" },
+  { "Id": 9, "Type": "Estimulación Auditiva", "Description": "Estimulación Auditiva Adaptada" },
+  { "Id": 10, "Type": "Hidroterapia", "Description": "Terapia en Entorno Acuático / Hidroterapia" }
 ]
