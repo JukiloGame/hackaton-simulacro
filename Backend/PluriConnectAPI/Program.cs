@@ -63,27 +63,11 @@ var goalActivityService = new GenericService<GoalActivities>(db);
 
 app.MapGet("/", () => "Backend funcionando!");
 
-// Children
-app.MapGet("/children", () => childService.GetAll());
-app.MapGet("/children/{id}", (int id) => childService.GetById(id));
-app.MapPost("/children", (Child c) => { childService.Insert(c); return Results.Created($"/children/{c.Id}", c); });
-app.MapPut("/children/{id}", (int id, Child c) => { c.Id = id; childService.Update(c); return Results.Ok(c); });
-app.MapDelete("/children/{id}", (int id) => { childService.Delete(id); return Results.Ok(); });
-
-// Goals
-app.MapGet("/goals", () => goalService.GetAll());
-app.MapPost("/goals", (Goal g) => { goalService.Insert(g); return Results.Ok(g); });
-
-// Activities
-app.MapGet("/activities", () => activityService.GetAll());
-app.MapPost("/activities", (Activity a) => { activityService.Insert(a); return Results.Ok(a); });
-
-// Progress
-app.MapGet("/progress", () => progressService.GetAll());
-app.MapPost("/progress", (Progress p) => { progressService.Insert(p); return Results.Ok(p); });
-
-// GoalActivities
-app.MapGet("/goalActivities", () => goalActivityService.GetAll());
-app.MapPost("/goalActivities", (GoalActivities ga) => { goalActivityService.Insert(ga); return Results.Ok(ga); });
+// Llama al CRUD para mapear los endpoints automáticamente
+app.MapCrud("children", childService);
+app.MapCrud("goals", goalService);
+app.MapCrud("activities", activityService);
+app.MapCrud("progress", progressService);
+app.MapCrud("goalActivities", goalActivityService);
 
 app.Run();
