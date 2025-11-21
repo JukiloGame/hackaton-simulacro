@@ -20,7 +20,7 @@ const ActivityLabel = ({ childId }: Props): React.ReactElement => {
   const [selected, setSelected] = useState<number | null>(null);
   const [isAssigning, setIsAssigning] = useState(false);
 
-//TODO: Llamar al endpoint del backend para asignar la actividad al niño
+{/ * TODO: Llamar al endpoint del backend para asignar la actividad al niño */}
   const handleAssign = async () => {
     if (!selected) return;
     setIsAssigning(true);
@@ -62,7 +62,7 @@ const ActivityLabel = ({ childId }: Props): React.ReactElement => {
           );
         })}
       </select>
-//TODO: Modificar Model/Child para que incluya id de actividades asignadas y comentarios
+{/* TODO: Modificar Model/Child para que incluya id de actividades asignadas y comentarios */}
       <button
         onClick={handleAssign}
         disabled={!selected || isAssigning}
