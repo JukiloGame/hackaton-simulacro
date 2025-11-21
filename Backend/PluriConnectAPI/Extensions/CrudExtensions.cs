@@ -4,39 +4,84 @@ namespace PluriConnectAPI.Extensions;
 
 public static class CrudExtensions
 {
-    public static void MapCrudAsync<T>(this IEndpointRouteBuilder app, string route, GenericService<T> service) where T : class, new()
+    public static void MapCrudAsync<T>(this IEndpointRouteBuilder app, string route) where T : class, new()
     {
         // GET all
-        app.MapGet($"/{route}", async () => await service.GetAllAsync());
+        app.MapGet($"/{route}", async (GenericService<T> service) =>
+        {
+            try
+            {
+                var list = await service.GetAllAsync();
+                return Results.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        });
 
         // GET by id
-        app.MapGet($"/{route}/{{id}}", async (int id) =>
+        app.MapGet($"/{route}/{{id}}", async (int id, GenericService<T> service) =>
         {
-            var item = await service.GetByIdAsync(id);
-            return item != null ? Results.Ok(item) : Results.NotFound();
+            try
+            {
+                var item = await service.GetByIdAsync(id);
+                return item != null ? Results.Ok(item) : Results.NotFound();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
         });
 
         // POST create
-        app.MapPost($"/{route}", async (T entity) =>
+        app.MapPost($"/{route}", async (T entity, GenericService<T> service) =>
         {
-            await service.InsertAsync(entity);
-            var id = GetId(entity);
-            return Results.Created($"/{route}/{id}", entity);
+            try
+            {
+                await service.InsertAsync(entity);
+                var id = GetId(entity);
+                return Results.Created($"/{route}/{id}", entity);
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
         });
 
         // PUT update
-        app.MapPut($"/{route}/{{id}}", async (int id, T entity) =>
+        app.MapPut($"/{route}/{{id}}", async (int id, T entity, GenericService<T> service) =>
         {
-            SetId(entity, id);
-            await service.UpdateAsync(entity);
-            return Results.Ok(entity);
+            try
+            {
+                // Ensure resource exists
+                var existing = await service.GetByIdAsync(id);
+                if (existing == null) return Results.NotFound();
+
+                SetId(entity, id);
+                var updated = await service.UpdateAsync(entity);
+                if (!updated) return Results.Problem("No se pudo actualizar el recurso.");
+
+                return Results.NoContent();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
         });
 
         // DELETE
-        app.MapDelete($"/{route}/{{id}}", async (int id) =>
+        app.MapDelete($"/{route}/{{id}}", async (int id, GenericService<T> service) =>
         {
-            await service.DeleteByIdAsync(id);
-            return Results.Ok();
+            try
+            {
+                var deleted = await service.DeleteByIdAsync(id);
+                return deleted ? Results.NoContent() : Results.NotFound();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
         });
     }
 

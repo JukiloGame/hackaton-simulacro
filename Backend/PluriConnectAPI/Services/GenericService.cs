@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PluriConnectAPI.Data;
+using PluriConnectAPI.Models;
 
 namespace PluriConnectAPI.Services;
 
