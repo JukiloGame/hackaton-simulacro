@@ -1,5 +1,6 @@
 import { useFetchData } from "../../../hooks/useFetchData/useFetchData";
 import LogoNexe from "../../../assets/LogoNexe.jpg";
+import ActivityLabel from "./ActivityLabel";
 
 interface ChildDetails {
   id: number;
@@ -68,10 +69,9 @@ export const ChildList = (): React.ReactElement => {
         {data?.map((child) => (
           <div
             key={child.id}
-            onClick={() => handleSelectedChild(child?.id)}
             className="cursor-pointer border rounded-xl p-4 shadow-sm hover:shadow-md bg-white transition flex justify-between items-center"
           >
-            <div>
+            <div onClick={() => handleSelectedChild(child?.id)}>
               <h3 className="text-lg font-medium text-gray-900">
                 {child?.name}
               </h3>
@@ -82,6 +82,11 @@ export const ChildList = (): React.ReactElement => {
                   ? new Date(child.dob).toLocaleDateString()
                   : "Sin fecha"}
               </p>
+
+              {/* Aquí insertamos el ActivityLabel dentro de la card del niño */}
+              <div className="mt-3">
+                <ActivityLabel childId={child.id} />
+              </div>
             </div>
 
             {/* Flecha de navegación -> reemplazada por mini logo */}
