@@ -1,39 +1,46 @@
 using PluriConnectAPI.Services;
 
+namespace PluriConnectAPI.Extensions;
+
 public static class CrudExtensions
 {
-    public static void MapCrud<T>(this IEndpointRouteBuilder app, string route, GenericService<T> service) where T : new()
+    public static void MapCrudAsync<T>(this IEndpointRouteBuilder app, string route, GenericService<T> service) where T : class, new()
     {
-        // GET ALL
-        app.MapGet($"/{route}", () => service.GetAll());
+        // GET all
+        app.MapGet($"/{route}", async () => await service.GetAllAsync());
 
-        // GET BY ID
-        app.MapGet($"/{route}/{{id}}", (int id) => service.GetById(id));
-
-        // CREATE
-        app.MapPost($"/{route}", (T entity) =>
+        // GET by id
+        app.MapGet($"/{route}/{{id}}", async (int id) =>
         {
-            service.Insert(entity);
-            return Results.Created($"/{route}/{GetId(entity)}", entity);
+            var item = await service.GetByIdAsync(id);
+            return item != null ? Results.Ok(item) : Results.NotFound();
         });
 
-        // UPDATE
-        app.MapPut($"/{route}/{{id}}", (int id, T entity) =>
+        // POST create
+        app.MapPost($"/{route}", async (T entity) =>
+        {
+            await service.InsertAsync(entity);
+            var id = GetId(entity);
+            return Results.Created($"/{route}/{id}", entity);
+        });
+
+        // PUT update
+        app.MapPut($"/{route}/{{id}}", async (int id, T entity) =>
         {
             SetId(entity, id);
-            service.Update(entity);
+            await service.UpdateAsync(entity);
             return Results.Ok(entity);
         });
 
         // DELETE
-        app.MapDelete($"/{route}/{{id}}", (int id) =>
+        app.MapDelete($"/{route}/{{id}}", async (int id) =>
         {
-            service.Delete(id);
+            await service.DeleteByIdAsync(id);
             return Results.Ok();
         });
     }
 
-    // Helpers para leer/escribir Id sin saber el tipo:
+    // helpers: assume int Id property
     private static int GetId<T>(T obj)
     {
         var prop = typeof(T).GetProperty("Id");

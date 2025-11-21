@@ -6,8 +6,11 @@ public class Child
     public string Name { get; set; } = "";
     public DateTime Dob { get; set; }
     public int? ActivitiesId { get; set; }
-    public Comment[]? Comments { get; set; }
+
+    // navegación
+    public List<Comment>? Comments { get; set; }
 }
+
 public class Comment
 {
     public int Id { get; set; }
@@ -16,6 +19,7 @@ public class Comment
     public string Text { get; set; } = "";
     public DateTime Date { get; set; }
 }
+
 public class Goal
 {
     public int Id { get; set; }
@@ -37,7 +41,7 @@ public class Progress
     public int ChildId { get; set; }
     public int GoalId { get; set; }
     public double Value { get; set; }
-    public string? Notes { get; set; }   // Puede ser null
+    public string? Notes { get; set; }
     public DateTime Date { get; set; }
 }
 
@@ -47,4 +51,3 @@ public class GoalActivities
     public int GoalId { get; set; }
     public int ActivityId { get; set; }
 }
-
