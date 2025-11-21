@@ -1,28 +1,41 @@
-using LiteDB;
-using System.Reflection;
+using Microsoft.EntityFrameworkCore;
+using PluriConnectAPI.Models;
 
 namespace PluriConnectAPI.Services;
 
-public class GenericService<T> where T : new()
+public class GenericService<T> where T : class
 {
+    private readonly AppDbContext _ctx;
+    private readonly DbSet<T> _dbSet;
 
-    private ILiteCollection<T> _col;
-
-    public GenericService(LiteDatabase db)
+    public GenericService(AppDbContext ctx)
     {
-        // Nombre de la colección = nombre de la clase
-        _col = db.GetCollection<T>(GetCollectionName());
-    }
-        private static string GetCollectionName()
-    {
-        // Convierte "Child" -> "children", "Goal" -> "goals", etc.
-        return typeof(T).Name.ToLower() + "s";
+        _ctx = ctx;
+        _dbSet = ctx.Set<T>();
     }
 
-    public IEnumerable<T> GetAll() => _col.FindAll();
-    public T? GetById(int id) => _col.FindById(id);
-    public void Insert(T obj) => _col.Insert(obj);
-    public bool Update(T obj) => _col.Update(obj);
-    public bool Delete(int id) { return _col.Delete(id); }
+    public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.AsNoTracking().ToListAsync();
 
+    // Assumes PK is int and named Id
+    public async Task<T?> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
+
+    public async Task InsertAsync(T entity)
+    {
+        _dbSet.Add(entity);
+        await _ctx.SaveChangesAsync();
+    }
+
+    public async Task<bool> UpdateAsync(T entity)
+    {
+        _dbSet.Update(entity);
+        return await _ctx.SaveChangesAsync() > 0;
+    }
+
+    public async Task<bool> DeleteByIdAsync(int id)
+    {
+        var e = await GetByIdAsync(id);
+        if (e == null) return false;
+        _dbSet.Remove(e);
+        return await _ctx.SaveChangesAsync() > 0;
+    }
 }
