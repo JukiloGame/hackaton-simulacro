@@ -57,6 +57,7 @@ var goalService = new GenericService<Goal>(db);
 var activityService = new GenericService<Activity>(db);
 var progressService = new GenericService<Progress>(db);
 var goalActivityService = new GenericService<GoalActivities>(db);
+var commentService = new GenericService<Comment>(db);
 
 
 // ENDPOINTS
@@ -69,5 +70,8 @@ app.MapCrud("goals", goalService);
 app.MapCrud("activities", activityService);
 app.MapCrud("progress", progressService);
 app.MapCrud("goalActivities", goalActivityService);
+app.MapCrud("children/comments", commentService);
+
+//TODO: Añadir MapPost para activities asociadas al niño y crear comentarios
 
 app.Run();

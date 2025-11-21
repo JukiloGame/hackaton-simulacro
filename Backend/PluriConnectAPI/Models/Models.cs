@@ -5,8 +5,17 @@ public class Child
     public int Id { get; set; }
     public string Name { get; set; } = "";
     public DateTime Dob { get; set; }
+    public int? ActivitiesId { get; set; }
+    public Comment[]? Comments { get; set; }
 }
-
+public class Comment
+{
+    public int Id { get; set; }
+    public int ChildId { get; set; }
+    public int ActivityId { get; set; }
+    public string Text { get; set; } = "";
+    public DateTime Date { get; set; }
+}
 public class Goal
 {
     public int Id { get; set; }
